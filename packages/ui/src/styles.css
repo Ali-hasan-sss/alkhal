@@ -1,0 +1,14 @@
+:root {
+  --alkhal-orange: 24 90% 48%;
+  --alkhal-burgundy: 350 47% 32%;
+  --alkhal-cream: 40 60% 98%;
+  --alkhal-ink: 20 14% 10%;
+}
+
+.bg-brand-orange {
+  background-color: hsl(var(--alkhal-orange));
+}
+
+.bg-brand-burgundy {
+  background-color: hsl(var(--alkhal-burgundy));
+}

@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "الخال POS",
+    "slug": "alkhal-pos",
+    "version": "0.1.0",
+    "orientation": "default",
+    "scheme": "alkhal",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#fffbf5"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.alkhal.pos",
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        }
+      }
+    },
+    "android": {
+      "package": "com.alkhal.pos",
+      "usesCleartextTraffic": true,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#fffbf5"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#fffbf5",
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 220
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

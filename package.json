@@ -1,0 +1,45 @@
+{
+  "name": "alkhal",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Al-Khal Restaurant Management System",
+  "packageManager": "pnpm@10.10.0",
+  "scripts": {
+    "dev": "turbo dev",
+    "dev:api": "pnpm --filter @alkhal/api dev",
+    "dev:web": "pnpm --filter @alkhal/web dev",
+    "dev:mobile": "pnpm --filter @alkhal/mobile start",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "typecheck": "turbo typecheck",
+    "db:generate": "pnpm --filter @alkhal/database generate",
+    "db:migrate": "pnpm --filter @alkhal/database migrate:dev",
+    "db:migrate:deploy": "pnpm --filter @alkhal/database migrate:deploy",
+    "db:seed": "pnpm --filter @alkhal/database seed",
+    "db:studio": "pnpm --filter @alkhal/database studio",
+    "db:validate": "pnpm --filter @alkhal/database validate",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "turbo": "^2.5.4",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@prisma/client",
+      "@prisma/engines",
+      "prisma",
+      "esbuild",
+      "@swc/core",
+      "sharp",
+      "@parcel/watcher",
+      "@node-rs/argon2",
+      "unrs-resolver"
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: alkhal-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-alkhal}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-alkhal_dev_password}
+      POSTGRES_DB: ${POSTGRES_DB:-alkhal}
+    ports:
+      - "5433:5432"
+    volumes:
+      - alkhal_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-alkhal} -d ${POSTGRES_DB:-alkhal}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: alkhal-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - alkhal_redis_data:/data
+
+volumes:
+  alkhal_pg_data:
+  alkhal_redis_data:

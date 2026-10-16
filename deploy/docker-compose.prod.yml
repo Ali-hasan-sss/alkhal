@@ -1,0 +1,35 @@
+# Isolated Postgres/Redis for Al-Khal only (unique container names + ports).
+# From repo root on server:
+#   docker compose -f deploy/docker-compose.prod.yml --env-file .env up -d
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: alkhal-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-alkhal}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-alkhal}
+    ports:
+      - "${POSTGRES_PORT:-5435}:5432"
+    volumes:
+      - alkhal_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-alkhal} -d ${POSTGRES_DB:-alkhal}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: alkhal-redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    volumes:
+      - alkhal_redis_data:/data
+
+volumes:
+  alkhal_pg_data:
+  alkhal_redis_data:
