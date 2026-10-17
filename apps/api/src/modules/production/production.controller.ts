@@ -34,8 +34,8 @@ export class ProductionController {
   @RequirePermissions('production.create')
   preview(
     @CurrentUser() user: AuthUser,
-    @Query('recipeId') recipeId?: string,
     @Query('quantity') quantity: string,
+    @Query('recipeId') recipeId?: string,
     @Query('productId') productId?: string,
   ) {
     return this.production.preview(user.restaurantId, recipeId, quantity, productId);
