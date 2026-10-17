@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useMemo, useState } from 'react';
+import { FormEvent, Suspense, useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import { api, ApiError } from '@/lib/api';
@@ -67,6 +67,14 @@ const emptyForm = {
 };
 
 export default function InventoryPage() {
+  return (
+    <Suspense fallback={<p className="p-6 text-sm text-stone-500">جاري التحميل…</p>}>
+      <InventoryPageInner />
+    </Suspense>
+  );
+}
+
+function InventoryPageInner() {
   const qc = useQueryClient();
   const searchParams = useSearchParams();
   const initialTab = searchParams.get('tab') === 'materials' ? 'materials' : 'stock';

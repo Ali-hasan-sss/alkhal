@@ -87,15 +87,18 @@ export default function DashboardPage() {
         }
       />
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {kpis.map((kpi, i) => (
+        {kpis.map((kpi, i) => {
+          const tone = KPI_TONES[i] ?? KPI_TONES[0]!;
+          return (
           <Card key={kpi.label} className="overflow-hidden p-0">
-            <div className={`h-1.5 ${KPI_TONES[i].bar}`} />
+            <div className={`h-1.5 ${tone.bar}`} />
             <div className="p-5">
               <div className="text-sm font-semibold text-stone-500">{kpi.label}</div>
-              <div className={`mt-2 text-2xl font-extrabold tabular-nums ${KPI_TONES[i].value}`}>{kpi.value}</div>
+              <div className={`mt-2 text-2xl font-extrabold tabular-nums ${tone.value}`}>{kpi.value}</div>
             </div>
           </Card>
-        ))}
+          );
+        })}
       </div>
       <div className="grid gap-4 lg:grid-cols-2">
         <Card>

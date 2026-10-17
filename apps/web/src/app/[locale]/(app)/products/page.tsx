@@ -297,7 +297,7 @@ export default function ProductsPage() {
                   <div className="font-semibold">{prepareable.data?.[p.id]?.prepareable ?? '—'}</div>
                   {prepareable.data?.[p.id]?.limitingIngredient ? (
                     <div className="text-xs text-stone-400">
-                      محدود بـ {prepareable.data[p.id].limitingIngredient}
+                      محدود بـ {prepareable.data[p.id]?.limitingIngredient}
                     </div>
                   ) : null}
                 </div>
